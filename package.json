@@ -1,0 +1,16 @@
+{
+  "name": "iotaime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js.js",
+  "dependencies": {
+    "serialport": "^7.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node bin/www "
+  },
+  "author": "Martin Lees",
+  "license": "GNU"
+}
