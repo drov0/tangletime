@@ -4,6 +4,7 @@
   "description": "",
   "main": "main.js.js",
   "dependencies": {
+    "node-bluetooth": "^1.2.5",
     "serialport": "^7.1.5"
   },
   "devDependencies": {},
