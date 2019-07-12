@@ -55,29 +55,25 @@
 
   }
 */
-int ledPin = 12;
-int state = 0;
-void setup() {
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH);
-  Serial.begin(9600); // Default communication rate of the Bluetooth module
-}
-void loop() {
-  if (Serial.available() > 0) { // Checks whether data is comming from the serial port
-    state = Serial.read(); // Reads the data from the serial port
-     Serial.println(state);
-  }
+#include <SoftwareSerial.h>
+SoftwareSerial EEBlue(10, 11); // RX | TX
+void setup()
+{
 
- 
-  
-  if (state == '0') {
-    digitalWrite(ledPin, LOW); // Turn LED OFF
-    Serial.println("LED: OFF"); // Send back, to the phone, the String "LED: ON"
-    state = 0;
-  }
-  else if (state == '1') {
-    digitalWrite(ledPin, HIGH);
-    Serial.println("LED: ON");;
-    state = 0;
-  }
+  Serial.begin(9600);
+  EEBlue.begin(9600);  //Default Baud for comm, it may be different for your Module.
+  Serial.println("The bluetooth gates are open.\n Connect to HC-05 from any other bluetooth device with 1234 as pairing key!.");
+
+}
+
+void loop()
+{
+
+  // Feed any data from bluetooth to Terminal.
+  if (EEBlue.available())
+    Serial.write(EEBlue.read());
+
+  // Feed all data from termial to bluetooth
+  if (Serial.available())
+    EEBlue.write(Serial.read());
 }
